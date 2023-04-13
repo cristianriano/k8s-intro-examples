@@ -1,11 +1,39 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nginx-deployment-service
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nginx-bounce
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: nginx-bounce
+    spec:
+      containers:
+        - name: app
+          image: cristianriano/nginxdemo
+          readinessProbe:
+            periodSeconds: 3
+            successThreshold: 3
+            failureThreshold: 3
+            exec:
+              command: ["grep", "1", "ready"]
+          ports:
+            - containerPort: 80
+
+---
+
 kind: Service
 apiVersion: v1
 metadata:
   name: nginx-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
-    app.kubernetes.io/name: nginx
+    app.kubernetes.io/name: nginx-bounce
   ports:
     - name: nginx
       protocol: TCP
