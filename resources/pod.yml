@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: nginx
+    image: nginx:1.24
+    readinessProbe:
+      initialDelaySeconds: 1
+      periodSeconds: 2
+      timeoutSeconds: 1
+      successThreshold: 3
+      failureThreshold: 3
+      tcpSocket:
+        port: 80
+    livenessProbe:
+      periodSeconds: 5
+      httpGet:
+        scheme: HTTP
+        path: /
+        httpHeaders:
+        - name: Host
+          value: elb.example.com
+        port: 80
+    ports:
+      - containerPort: 80
