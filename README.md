@@ -12,6 +12,21 @@ You need to install minikube to run this demo and a driver.
 4. To access services from outside the cluster open another terminal window and run `minikube tunnel`
 5. When done stop/destroy the cluster `minikube delete --all` or `minikube stop`
 
+## Helm
+
+1. Install helm with brew
+2. Add the repository url. This add the Bitnami repo that has many examples.
+(For more repos check [Artifact Hub](https://artifacthub.io/))
+`helm repo add bitnami https://charts.bitnami.com/bitnami`
+3. Search for the desired chart with
+`helm search repo redis`
+4. Get more info on the desired repo
+`helm show all [chart]`
+5. Check the available values to configure
+`helm show values [chart] > values.yml`
+6. Finally install the desired chart
+`helm install [name] [chart]`
+
 ## Resources
 
 Apply the desired example with
