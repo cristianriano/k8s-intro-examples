@@ -27,6 +27,15 @@ You need to install minikube to run this demo and a driver.
 6. Finally install the desired chart
 `helm install [name] [chart]`
 
+## Challenge!
+
+- Dockerize a basic Spring Application (one available in [spring-app](./spring-app/))
+- Deploy it on K8S with a Deployment using Minikube
+- Expose it as a Service
+- Install MySQL using Helm Chart and connect from the app
+- BONUS: Deploy MySQL and the app in different namespace (tip: Check NetworkPolicy component for Ingress and Egress)
+- BONUS 2: Configure a persistent volume to persist MySQL data
+
 ## Resources
 
 Apply the desired example with
