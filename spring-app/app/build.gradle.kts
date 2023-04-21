@@ -39,10 +39,15 @@ dependencies {
 
   // Spring
   implementation("org.springframework.boot:spring-boot-starter-web")
+  implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+  // Kotlin reflection is needed to instantiate Hibernate components
+  implementation("org.jetbrains.kotlin:kotlin-reflect")
+  implementation("mysql:mysql-connector-java:8.0.32")
 //  implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("io.rest-assured:rest-assured")
+  testImplementation("com.h2database:h2:2.1.214")
   testImplementation(kotlin("test"))
 }
 
@@ -56,7 +61,7 @@ bootJar.apply {
   archiveBaseName.set("app")
 }
 
-val javaMainClass = "com.example.shopping.list.AppKt"
+val javaMainClass = "com.example.shoppinglist.AppKt"
 application {
   // Define the main class for the application.
   mainClass.set(javaMainClass)
