@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shopping-list-config
+data:
+  mysql_host: mysql-service
+  mysql_port: 3306
+  mysql_db: shopping_list
+
+---
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: shopping-list-deployment
+  labels:
+    app.kubernetes.io/name: shopping-list
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: shopping-list-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: shopping-list-app
+    spec:
+      containers:
+        - name: app
+          image: cristianriano/shopping-list-spring:0.3
+          ports:
+            - containerPort: 8080
+          # Mount all ConfigMap as envs
+          envFrom:
+            - configMapRef:
+                name: shopping-list-config
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: shopping-list-service
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: shopping-list-app
+  ports:
+    - name: app
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
