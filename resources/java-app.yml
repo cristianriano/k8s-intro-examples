@@ -4,7 +4,7 @@ metadata:
   name: shopping-list-config
 data:
   mysql_host: mysql-service
-  mysql_port: 3306
+  mysql_port: "3306"
   mysql_db: shopping_list
 
 ---
