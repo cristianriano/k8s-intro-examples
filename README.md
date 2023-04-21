@@ -36,6 +36,10 @@ You need to install minikube to run this demo and a driver.
 - BONUS: Deploy MySQL and the app in different namespace (tip: Check NetworkPolicy component for Ingress and Egress)
 - BONUS 2: Configure a persistent volume to persist MySQL data
 
+### Solution
+
+1. Install MySQL with custom values `helm install mysql-service bitnami/mysql --values values-mysql-override.yml`
+
 ## Resources
 
 Apply the desired example with

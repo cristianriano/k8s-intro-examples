@@ -3,9 +3,10 @@ kind: ConfigMap
 metadata:
   name: shopping-list-config
 data:
-  mysql_host: mysql-service
-  mysql_port: "3306"
-  mysql_db: shopping_list
+  MYSQL_HOST: mysql-service-2
+  MYSQL_PORT: "3306"
+  MYSQL_DB: shopping_list
+  MYSQL_USER: user
 
 ---
 

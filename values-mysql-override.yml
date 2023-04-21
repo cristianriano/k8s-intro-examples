@@ -1,0 +1,8 @@
+auth:
+  database: shopping_list
+  username: user
+  password: password
+
+primary:
+  persistence:
+    enabled: false
