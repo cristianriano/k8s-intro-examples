@@ -18,3 +18,9 @@
 
 1. Once it runs you can add new items to the list with `curl -X POST localhost:8080/items -d 'Milk'`
 2. And retrieve them `curl localhost:8080/items`
+
+## Building the Container
+
+1. `docker build . -t <image-name>:<tagname>`
+2. `docker tag <image-name>:<tagname> <dockerhub user>/<remote-image>:<tagname>`
+3. `docker push <dockerhub user>/<remote-image>:<tagname>`
